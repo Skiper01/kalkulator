@@ -1,21 +1,21 @@
 #autor Skiper
 import tkinter as tk
 def przycisk_click(symbol):
-    obecny_tekst = wejscie.get()
-    wejscie.delete(0, tk.END)
-    wejscie.insert(0, obecny_tekst + symbol)
+    text = entry.get()
+    entry.delete(0, tk.END)
+    entry.insert(0, text + symbol)
 
-def oblicz():
+def calculate():
     try:
-        wynik = eval(wejscie.get())
-        wejscie.delete(0, tk.END)
-        wejscie.insert(0, str(wynik))
+        result = eval(entry.get())
+        entry.delete(0, tk.END)
+        entry.insert(0, str(result))
     except Exception as e:
-        wejscie.delete(0, tk.END)
-        wejscie.insert(0, "Bład!")
+        entry.delete(0, tk.END)
+        entry.insert(0, "Bład!")
 
 def clear():
-    wejscie.delete(0, tk.END)
+    entry.delete(0, tk.END)
 
 
 root = tk.Tk()
@@ -23,8 +23,8 @@ root.geometry("270x350")
 root.title("Kalkuter")
 root.iconbitmap("images/icon.ico")
 
-wejscie = tk.Entry(root, width=20, font=('Arial', 18), justify="right")
-wejscie.grid(row=0, column=0, columnspan=4)
+entry = tk.Entry(root, width=20, font=('Arial', 18), justify="right")
+entry.grid(row=0, column=0, columnspan=4)
 
 
 buttons = [
@@ -36,7 +36,7 @@ buttons = [
 
 for symbol, row, col in buttons:
     if symbol == '=':
-        btn = tk.Button(root, text=symbol, width=5, height=2, font=('Arial', 14), command=oblicz)
+        btn = tk.Button(root, text=symbol, width=5, height=2, font=('Arial', 14), command=calculate)
     else:
         btn = tk.Button(root, text=symbol, width=5, height=2, font=('Arial', 14),
                         command=lambda s=symbol: przycisk_click(s))
@@ -47,4 +47,5 @@ btn_clear = tk.Button(root, text='C', width=5, height=2, font=('Arial', 14), com
 btn_clear.grid(row=5, column=0, columnspan=4, sticky="we")
 
 root.mainloop()
+
 #autor Skiper
